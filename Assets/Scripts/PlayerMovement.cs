@@ -34,6 +34,33 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
+        if (Input.GetKey("right"))
+        {
+            rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        }
+        if (Input.GetKey("left"))
+        {
+            rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        }
+        Debug.Log(Screen.width);
+        for (int i = 0; i < Input.touchCount; ++i)
+        {
+            //Debug.Log(Screen.width);
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            {
+                Touch touch = Input.GetTouch(i);
+                Debug.Log(touch.position.x);
+                //Debug.Log(Screen.width);
+                if (touch.position.x < Screen.width/2)
+                {
+                    rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                }
+                else
+                {
+                    rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                }
+            }
+        }
 
         if (rb.position.y<-1)
         {
