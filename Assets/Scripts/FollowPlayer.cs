@@ -10,5 +10,6 @@ public class FollowPlayer : MonoBehaviour
     {
         //Debug.Log(player.position);
         transform.position = player.position + offset;
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, player.position.x);
     }
 }
